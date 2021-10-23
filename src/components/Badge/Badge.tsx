@@ -34,9 +34,9 @@ type BadgeProps = {
   children?: React.ReactNode;
   type?: keyof typeof typeList;
 } & StyleBase;
-const Badge: React.FC<BadgeProps> = ({ children, type = "info" }) => {
+const Badge: React.FC<BadgeProps> = ({ children, type = "info", _css }) => {
   const t = typeList[type];
-  return <span css={[badgeStyle, t]}>{children}</span>;
+  return <span css={[badgeStyle, t, _css]}>{children}</span>;
 };
 
 export default Badge;

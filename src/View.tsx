@@ -17,7 +17,7 @@ import Line from "@/components/Line/Line";
 const wrapperStyle = css`
   width: 100%;
   min-height: 100%;
-  padding: 64px;
+  padding: 64px 18px;
   box-sizing: border-box;
 `;
 const blockStyle = css`
@@ -25,11 +25,8 @@ const blockStyle = css`
 `;
 const flexStyle = css`
   display: flex;
-`;
-const itemStyle = css`
-  &:nth-of-type(n + 2) {
-    margin-left: 30px;
-  }
+  flex-wrap: wrap;
+  margin-left: -30px;
 `;
 const View: React.FC = () => {
   const [inputText, setInputText] = useState("InputText");
@@ -51,18 +48,32 @@ const View: React.FC = () => {
       <div css={blockStyle}>
         <Line />
       </div>
-      <div css={[blockStyle, flexStyle]}>
+      <div css={[flexStyle]}>
         {(["flat", "concave", "convex", "pressed"] as const).map((shape) => (
-          <div key={shape} css={itemStyle}>
-            <Card shape={shape}>{shape}</Card>
-          </div>
+          <Card
+            key={shape}
+            _css={css`
+              margin-top: 40px;
+              margin-left: 30px;
+            `}
+            shape={shape}
+          >
+            {shape}
+          </Card>
         ))}
       </div>
-      <div css={[blockStyle, flexStyle]}>
+      <div css={[flexStyle]}>
         {(["info", "error", "warning", "success"] as const).map((t) => (
-          <div key={t} css={itemStyle}>
-            <Badge type={t}>{t.toUpperCase()}</Badge>
-          </div>
+          <Badge
+            key={t}
+            type={t}
+            _css={css`
+              margin-top: 40px;
+              margin-left: 30px;
+            `}
+          >
+            {t.toUpperCase()}
+          </Badge>
         ))}
       </div>
       <div css={blockStyle}>
